@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Votre panier — Le Comptoir des Ombres</title>
+  <meta name="description" content="Votre panier sur le Comptoir des Ombres.">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== Bandeau défilant (promo) ===== -->
+  <div class="bandeau-promo" aria-label="Informations livraison">
+    <div class="bandeau-defile">
+      <span>✦ Livraison offerte dès 60 € d'achat</span>
+      <span>✦ Expédition sous 3 à 5 nuits</span>
+      <span>✦ Emballage discret, sans mention extérieure</span>
+      <span>✦ Livraison offerte dès 60 € d'achat</span>
+      <span>✦ Expédition sous 3 à 5 nuits</span>
+      <span>✦ Emballage discret, sans mention extérieure</span>
+    </div>
+  </div>
+
+  <!-- ===== En-tête : logo, menu, panier ===== -->
+  <header class="entete">
+    <div class="conteneur entete-interieur">
+      <a class="logo" href="index.html">
+        <img src="img/logo.svg" alt="" width="44" height="44">
+        <span class="logo-texte">
+          <span class="logo-nom">Le Comptoir des Ombres</span>
+          <span class="logo-sous">curiosités &amp; antiquités — depuis 2019</span>
+        </span>
+      </a>
+
+      <button class="bouton-menu" type="button" aria-expanded="false" aria-controls="nav-principale">
+        <span aria-hidden="true">☰</span> Menu
+      </button>
+
+      <nav class="nav-principale" id="nav-principale" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="catalogue.html">Catalogue</a>
+        <a href="a-propos.html">Qui suis-je ?</a>
+        <a href="contact.html">Contact</a>
+        <a class="lien-panier" href="panier.html" aria-label="Panier">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M6 7h12l-1.2 12.2a1 1 0 0 1-1 .8H8.2a1 1 0 0 1-1-.8Z M9 7a3 3 0 0 1 6 0"
+                  fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+          Panier
+          <span class="pastille" data-compteur-panier hidden>0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== Titre de la page ===== -->
+    <section class="entete-page">
+      <div class="conteneur">
+        <p class="fil-ariane"><a href="index.html">Accueil</a> <span aria-hidden="true">›</span> Panier</p>
+        <h1>Votre panier</h1>
+        <p class="entete-page-intro">Ce que vous emportez avec vous… ou ce qui a décidé de vous suivre.</p>
+      </div>
+    </section>
+
+    <section class="section section-panier">
+      <div class="conteneur">
+
+        <!-- Message affiché après validation -->
+        <div class="confirmation" data-confirmation hidden tabindex="-1">
+          <span class="confirmation-sceau" aria-hidden="true">✦</span>
+          <h2>Panier validé</h2>
+          <p>Votre commande <strong data-numero-commande></strong> a bien été enregistrée.
+             Elle est archivée plus bas, dans « Vos commandes passées ».</p>
+          <a class="bouton bouton-discret bouton-petit" href="catalogue.html">Retourner au catalogue</a>
+        </div>
+
+        <!-- Panier vide -->
+        <div class="panier-vide" data-panier-vide hidden>
+          <p>Votre panier est vide. Pour l'instant, rien ne vous a suivi jusqu'ici.</p>
+          <a class="bouton" href="catalogue.html">Parcourir le catalogue</a>
+        </div>
+
+        <!-- Panier rempli (lignes insérées par js/panier.js) -->
+        <div class="panier" data-panier hidden>
+          <ul class="panier-lignes" data-lignes></ul>
+
+          <aside class="recap" aria-label="Récapitulatif">
+            <h2>Récapitulatif</h2>
+            <dl>
+              <div><dt>Sous-total</dt><dd data-sous-total></dd></div>
+              <div><dt>Livraison</dt><dd data-livraison></dd></div>
+              <div class="recap-total"><dt>Total</dt><dd data-total></dd></div>
+            </dl>
+            <p class="recap-note" data-note-livraison></p>
+            <button class="bouton bouton-plein" type="button" data-valider>Valider le panier</button>
+            <button class="lien-vider" type="button" data-vider>Vider le panier</button>
+          </aside>
+        </div>
+
+        <!-- Historique des commandes archivées -->
+        <section class="historique" data-historique hidden>
+          <h2>Vos commandes passées</h2>
+          <ol class="historique-liste" data-historique-liste></ol>
+        </section>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Pied de page ===== -->
+  <footer class="pied">
+    <div class="conteneur pied-interieur">
+      <div>
+        <p class="pied-nom">Le Comptoir des Ombres</p>
+        <p>Curiosités anciennes, bougies &amp; objets d'antiquaire.</p>
+      </div>
+      <nav aria-label="Liens du pied de page">
+        <a href="catalogue.html">Catalogue</a>
+        <a href="a-propos.html">Qui suis-je ?</a>
+        <a href="contact.html">Contact</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </nav>
+    </div>
+    <div class="conteneur pied-bas">
+      <p>© 2019–<span data-annee>2026</span> Le Comptoir des Ombres — site fait maison avec de la cire et beaucoup de café.</p>
+      <p class="compteur-visites">Vous êtes le <span>004 213</span><sup>e</sup> visiteur ✦ Dernière mise à jour : mars 2023</p>
+    </div>
+  </footer>
+
+  <!-- Scripts : données d'abord, puis dessins, puis logique -->
+  <script src="data/products.js"></script>
+  <script src="js/illustrations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/panier.js"></script>
+</body>
+</html>

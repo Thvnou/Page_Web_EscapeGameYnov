@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qui suis-je ? — Le Comptoir des Ombres</title>
+  <meta name="description" content="Qui se cache derrière le Comptoir des Ombres ? Quelques mots sur Ghost, le gérant de la boutique.">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== Bandeau défilant (promo) ===== -->
+  <div class="bandeau-promo" aria-label="Informations livraison">
+    <div class="bandeau-defile">
+      <span>✦ Livraison offerte dès 60 € d'achat</span>
+      <span>✦ Expédition sous 3 à 5 nuits</span>
+      <span>✦ Emballage discret, sans mention extérieure</span>
+      <span>✦ Livraison offerte dès 60 € d'achat</span>
+      <span>✦ Expédition sous 3 à 5 nuits</span>
+      <span>✦ Emballage discret, sans mention extérieure</span>
+    </div>
+  </div>
+
+  <!-- ===== En-tête : logo, menu, panier ===== -->
+  <header class="entete">
+    <div class="conteneur entete-interieur">
+      <a class="logo" href="index.html">
+        <img src="img/logo.svg" alt="" width="44" height="44">
+        <span class="logo-texte">
+          <span class="logo-nom">Le Comptoir des Ombres</span>
+          <span class="logo-sous">curiosités &amp; antiquités — depuis 2019</span>
+        </span>
+      </a>
+
+      <button class="bouton-menu" type="button" aria-expanded="false" aria-controls="nav-principale">
+        <span aria-hidden="true">☰</span> Menu
+      </button>
+
+      <nav class="nav-principale" id="nav-principale" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="catalogue.html">Catalogue</a>
+        <a href="a-propos.html">Qui suis-je ?</a>
+        <a href="contact.html">Contact</a>
+        <a class="lien-panier" href="panier.html" aria-label="Panier">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M6 7h12l-1.2 12.2a1 1 0 0 1-1 .8H8.2a1 1 0 0 1-1-.8Z M9 7a3 3 0 0 1 6 0"
+                  fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+          Panier
+          <span class="pastille" data-compteur-panier hidden>0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== Titre de la page ===== -->
+    <section class="entete-page">
+      <div class="conteneur">
+        <p class="fil-ariane"><a href="index.html">Accueil</a> <span aria-hidden="true">›</span> Qui suis-je ?</p>
+        <h1>Qui tient ce comptoir ?</h1>
+        <p class="entete-page-intro">
+          On me demande souvent qui se cache derrière la boutique.
+          Réponse courte : pas grand monde. Réponse longue : ci-dessous.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Présentation ===== -->
+    <section class="section">
+      <div class="conteneur presentation">
+
+        <figure class="portrait">
+          <!-- Silhouette encapuchonnée : Ghost ne montre jamais son visage -->
+          <svg viewBox="0 0 240 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Silhouette encapuchonnée tenant une bougie">
+            <rect width="240" height="280" fill="#120e0f"/>
+            <circle cx="150" cy="170" r="90" fill="#f2b35a" opacity=".05"/>
+            <circle cx="150" cy="170" r="55" fill="#f2b35a" opacity=".07"/>
+            <!-- capuche et épaules -->
+            <path d="M120 40 C78 40 62 82 64 120 C66 150 58 170 40 200 L28 280 H212 L200 200 C182 170 174 150 176 120 C178 82 162 40 120 40 Z" fill="#060505"/>
+            <path d="M120 62 C94 62 86 92 88 118 C90 140 104 152 120 152 C136 152 150 140 152 118 C154 92 146 62 120 62 Z" fill="#000"/>
+            <!-- main et bougie -->
+            <rect x="140" y="182" width="16" height="42" rx="2" fill="#d9cfb8"/>
+            <path d="M132 222 h32 v10 a6 6 0 0 1 -6 6 h-20 a6 6 0 0 1 -6 -6 Z" fill="#1a1414"/>
+            <line x1="148" y1="182" x2="148" y2="176" stroke="#111" stroke-width="1.5"/>
+            <g class="flamme">
+              <path d="M148 154 C142 164 143 172 148 176 C153 172 154 164 148 154 Z" fill="#e9a94b"/>
+              <path d="M148 163 C146 167 146 172 148 174 C150 172 150 167 148 163 Z" fill="#fbe7b0"/>
+            </g>
+          </svg>
+          <figcaption>Moi, à l'atelier. Je ne suis pas très photo.</figcaption>
+        </figure>
+
+        <div class="presentation-texte">
+          <h2>Bonsoir, moi c'est Ghost.</h2>
+          <p>
+            Ce n'est pas mon vrai nom, évidemment. C'est le surnom qu'on me donne
+            depuis le lycée, parce que j'avais la manie de disparaître des soirées
+            sans prévenir personne. Il m'est resté, alors j'en ai fait le nom de
+            ma boutique… enfin presque.
+          </p>
+          <p>
+            Le jour, je travaille dans l'informatique (c'est pour ça que le site est
+            fait maison, et c'est aussi pour ça qu'il est un peu bancal). La nuit,
+            je fais couler de la cire, je relie des carnets et je trie ce que je
+            ramène des brocantes du week-end.
+          </p>
+          <p>
+            Tout a commencé en 2019, quand j'ai dû vider le grenier de ma
+            grand-mère. Des malles entières d'objets bizarres, de clés qui n'ouvraient
+            plus rien et de carnets à moitié remplis. Je n'ai pas eu le cœur de tout
+            jeter. Le Comptoir des Ombres est né comme ça : une table pliante sur
+            un marché nocturne, et trois bougies.
+          </p>
+          <p class="signature signature-claire">— Ghost</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== Petite chronologie ===== -->
+    <section class="section section-sombre">
+      <div class="conteneur">
+        <header class="section-titre">
+          <h2>L'histoire du comptoir</h2>
+          <p>Quelques dates, pour les curieux.</p>
+        </header>
+
+        <ol class="chronologie">
+          <li>
+            <span class="chrono-date">2019</span>
+            <div>
+              <h3>Le grenier</h3>
+              <p>Je vide la maison de ma grand-mère et je garde (presque) tout. Premier stand sur un marché de nuit.</p>
+            </div>
+          </li>
+          <li>
+            <span class="chrono-date">2020</span>
+            <div>
+              <h3>Les premières bougies</h3>
+              <p>Confinement oblige, je transforme le grenier en atelier. La Veuve Noire voit le jour.</p>
+            </div>
+          </li>
+          <li>
+            <span class="chrono-date">2021</span>
+            <div>
+              <h3>Le site</h3>
+              <p>Je code la première version de ce site, une nuit d'insomnie. Oui, ça se voit.</p>
+            </div>
+          </li>
+          <li>
+            <span class="chrono-date">2023</span>
+            <div>
+              <h3>Dernière mise à jour</h3>
+              <p>Nouveau catalogue, nouvelles fioles. Depuis, je repousse la refonte.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Manies et contact ===== -->
+    <section class="section">
+      <div class="conteneur grille-apropos">
+        <div class="encart">
+          <h2>Mes petites manies</h2>
+          <ul class="liste-manies">
+            <li>Je ne travaille qu'après la tombée de la nuit.</li>
+            <li>Mon chat surveille l'atelier. Il a goûté à toutes les bougies.</li>
+            <li>Je garde une clé de chaque lot que je vends. Personne ne sait pourquoi, moi non plus.</li>
+            <li>Je réponds aux messages, mais rarement avant minuit.</li>
+          </ul>
+        </div>
+
+        <div class="encart">
+          <h2>Me trouver</h2>
+          <p>
+            Je fais encore quelques brocantes et marchés nocturnes dans la région,
+            quand le travail me laisse un week-end.
+          </p>
+          <p>
+            On me croise aussi en ligne sous le même pseudo, mais je poste rarement.
+            Le plus simple reste de m'écrire.
+          </p>
+          <a class="bouton bouton-petit" href="contact.html">M'écrire un mot</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Pied de page ===== -->
+  <footer class="pied">
+    <div class="conteneur pied-interieur">
+      <div>
+        <p class="pied-nom">Le Comptoir des Ombres</p>
+        <p>Curiosités anciennes, bougies &amp; objets d'antiquaire.</p>
+      </div>
+      <nav aria-label="Liens du pied de page">
+        <a href="catalogue.html">Catalogue</a>
+        <a href="a-propos.html">Qui suis-je ?</a>
+        <a href="contact.html">Contact</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </nav>
+    </div>
+    <div class="conteneur pied-bas">
+      <p>© 2019–<span data-annee>2026</span> Le Comptoir des Ombres — site fait maison avec de la cire et beaucoup de café.</p>
+      <p class="compteur-visites">Vous êtes le <span>004 213</span><sup>e</sup> visiteur ✦ Dernière mise à jour : mars 2023</p>
+    </div>
+  </footer>
+
+  <!-- Scripts : données d'abord, puis dessins, puis logique -->
+  <script src="data/products.js"></script>
+  <script src="js/illustrations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

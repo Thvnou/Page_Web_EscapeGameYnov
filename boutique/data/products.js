@@ -6,6 +6,7 @@
 
    Champs :
      id           identifiant unique, utilisé dans l'URL (produit.html?id=...)
+     categorie    rubrique du catalogue (voir CATEGORIES plus bas)
      nom          nom affiché
      prix         prix en euros (nombre)
      description  courte phrase « inquiétante » affichée sur les cartes
@@ -19,6 +20,7 @@
 const PRODUITS = [
   {
     id: "bougie-veuve-noire",
+    categorie: "bougies",
     nom: "Bougie de la Veuve Noire",
     prix: 14.9,
     description: "Cire noire coulée à la main. Sa flamme penche toujours vers la porte.",
@@ -30,6 +32,7 @@ const PRODUITS = [
   },
   {
     id: "grimoire-sans-titre",
+    categorie: "papeterie",
     nom: "Grimoire sans titre",
     prix: 89,
     description: "Reliure de cuir craquelé. Les dernières pages se remplissent seules, dit-on.",
@@ -40,6 +43,7 @@ const PRODUITS = [
   },
   {
     id: "fiole-brume-marais",
+    categorie: "fioles",
     nom: "Fiole de brume du marais",
     prix: 24.5,
     description: "Bouchon de liège scellé à la cire. Ne pas ouvrir après minuit.",
@@ -51,6 +55,7 @@ const PRODUITS = [
   },
   {
     id: "chevaliere-corbeau",
+    categorie: "bijoux",
     nom: "Chevalière du Corbeau",
     prix: 39,
     description: "Laiton vieilli. Son ancien propriétaire ne l'a jamais retirée. Jamais.",
@@ -61,6 +66,7 @@ const PRODUITS = [
   },
   {
     id: "sablier-qui-hesite",
+    categorie: "curiosites",
     nom: "Sablier qui hésite",
     prix: 32,
     description: "Le sable s'arrête parfois à mi-course. Personne ne sait ce qu'il attend.",
@@ -70,6 +76,7 @@ const PRODUITS = [
   },
   {
     id: "cle-sans-serrure",
+    categorie: "curiosites",
     nom: "Clé sans serrure",
     prix: 12,
     description: "Trouvée dans une maison condamnée. Elle n'ouvre rien… de ce côté-ci.",
@@ -79,6 +86,7 @@ const PRODUITS = [
   },
   {
     id: "miroir-de-poche-terni",
+    categorie: "curiosites",
     nom: "Miroir de poche terni",
     prix: 27,
     description: "Votre reflet y arrive toujours avec une seconde de retard.",
@@ -88,6 +96,7 @@ const PRODUITS = [
   },
   {
     id: "lot-sept-bougies",
+    categorie: "bougies",
     nom: "Lot de 7 bougies de veillée",
     prix: 19.9,
     description: "Une pour chaque nuit. Ne pas allumer la septième.",
@@ -97,6 +106,7 @@ const PRODUITS = [
   },
   {
     id: "encre-seiche-suie",
+    categorie: "papeterie",
     nom: "Encre de seiche & suie",
     prix: 9.9,
     description: "Pour écrire ce qu'on ne veut surtout pas relire.",
@@ -106,6 +116,7 @@ const PRODUITS = [
   },
   {
     id: "medaillon-portrait-efface",
+    categorie: "bijoux",
     nom: "Médaillon au portrait effacé",
     prix: 45,
     description: "Il y avait un visage à l'intérieur. Il y en a encore un, certains soirs.",
@@ -115,6 +126,7 @@ const PRODUITS = [
   },
   {
     id: "herbier-saint-jean",
+    categorie: "papeterie",
     nom: "Herbier de la Saint-Jean",
     prix: 58,
     description: "Plantes cueillies la nuit la plus courte. Certaines ne figurent dans aucun livre.",
@@ -124,6 +136,7 @@ const PRODUITS = [
   },
   {
     id: "clochette-de-seuil",
+    categorie: "curiosites",
     nom: "Clochette de seuil",
     prix: 17,
     description: "À suspendre au-dessus de la porte. Elle sonne quand personne n'entre.",
@@ -132,4 +145,13 @@ const PRODUITS = [
     teinte: "#8a6a3c",
     badge: "Dernier exemplaire"
   }
+];
+
+/* Rubriques du catalogue, dans l'ordre d'affichage des filtres */
+const CATEGORIES = [
+  { id: "bougies",    nom: "Bougies" },
+  { id: "papeterie",  nom: "Grimoires & papeterie" },
+  { id: "fioles",     nom: "Fioles" },
+  { id: "bijoux",     nom: "Bijoux" },
+  { id: "curiosites", nom: "Curiosités" }
 ];

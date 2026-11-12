@@ -1,7 +1,7 @@
 /* ==========================================================================
    Le Comptoir des Ombres — Script commun à toutes les pages
    --------------------------------------------------------------------------
-   - Stockage du panier (localStorage protégé par try/catch)
+   - Stockage du panier et des commandes archivées (localStorage protégé)
    - Compteur du panier dans l'en-tête
    - Affichage des produits phares sur l'accueil
    - Petit message de confirmation ("ajouté au panier")
@@ -12,22 +12,21 @@
    local avec certains navigateurs, cookies bloqués). Dans ce cas on garde
    le panier en mémoire le temps de la visite, sans planter le site. */
 const Stockage = (() => {
-  const CLE_PANIER = "comptoir-panier";
-  let memoire = []; // secours si localStorage ne marche pas
+  const memoire = {}; // secours si localStorage ne marche pas
 
-  function lire() {
+  function lire(cle, defaut) {
     try {
-      const brut = localStorage.getItem(CLE_PANIER);
-      return brut ? JSON.parse(brut) : [];
+      const brut = localStorage.getItem(cle);
+      return brut ? JSON.parse(brut) : defaut;
     } catch (e) {
-      return memoire;
+      return cle in memoire ? memoire[cle] : defaut;
     }
   }
 
-  function ecrire(panier) {
-    memoire = panier;
+  function ecrire(cle, valeur) {
+    memoire[cle] = valeur;
     try {
-      localStorage.setItem(CLE_PANIER, JSON.stringify(panier));
+      localStorage.setItem(cle, JSON.stringify(valeur));
     } catch (e) {
       /* tant pis, on reste en mémoire */
     }
@@ -36,12 +35,22 @@ const Stockage = (() => {
   return { lire, ecrire };
 })();
 
+const CLE_PANIER = "comptoir-panier";
+const CLE_COMMANDES = "comptoir-commandes";
+
 /* ---------- Panier ----------
    Le panier est une liste de { id, quantite }. */
 const Panier = {
   contenu() {
-    const p = Stockage.lire();
-    return Array.isArray(p) ? p : [];
+    const p = Stockage.lire(CLE_PANIER, []);
+    if (!Array.isArray(p)) return [];
+    // ignore les produits qui n'existent plus dans le catalogue
+    return typeof PRODUITS === "undefined" ? p : p.filter((l) => PRODUITS.some((x) => x.id === l.id));
+  },
+
+  enregistrer(panier) {
+    Stockage.ecrire(CLE_PANIER, panier);
+    majCompteurPanier();
   },
 
   ajouter(id, quantite = 1) {
@@ -52,12 +61,43 @@ const Panier = {
     } else {
       panier.push({ id, quantite });
     }
-    Stockage.ecrire(panier);
-    majCompteurPanier();
+    this.enregistrer(panier);
+  },
+
+  /* Fixe la quantité d'un article (0 ou moins = retiré du panier) */
+  definirQuantite(id, quantite) {
+    const panier = this.contenu()
+      .map((l) => (l.id === id ? { ...l, quantite } : l))
+      .filter((l) => l.quantite > 0);
+    this.enregistrer(panier);
+  },
+
+  retirer(id) {
+    this.enregistrer(this.contenu().filter((l) => l.id !== id));
+  },
+
+  vider() {
+    this.enregistrer([]);
   },
 
   nombreArticles() {
     return this.contenu().reduce((total, l) => total + (Number(l.quantite) || 0), 0);
+  }
+};
+
+/* ---------- Commandes archivées ----------
+   Environnement fictif : « valider » le panier ne paie rien, on archive
+   simplement une copie de la commande dans le navigateur. */
+const Commandes = {
+  liste() {
+    const c = Stockage.lire(CLE_COMMANDES, []);
+    return Array.isArray(c) ? c : [];
+  },
+
+  archiver(commande) {
+    const liste = this.liste();
+    liste.unshift(commande); // la plus récente en premier
+    Stockage.ecrire(CLE_COMMANDES, liste);
   }
 };
 

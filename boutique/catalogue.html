@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue — Le Comptoir des Ombres</title>
+  <meta name="description" content="Tout le catalogue du Comptoir des Ombres : bougies, grimoires, fioles, bijoux et curiosités anciennes.">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== Bandeau défilant (promo) ===== -->
+  <div class="bandeau-promo" aria-label="Informations livraison">
+    <div class="bandeau-defile">
+      <span>✦ Livraison offerte dès 60 € d'achat</span>
+      <span>✦ Expédition sous 3 à 5 nuits</span>
+      <span>✦ Emballage discret, sans mention extérieure</span>
+      <span>✦ Livraison offerte dès 60 € d'achat</span>
+      <span>✦ Expédition sous 3 à 5 nuits</span>
+      <span>✦ Emballage discret, sans mention extérieure</span>
+    </div>
+  </div>
+
+  <!-- ===== En-tête : logo, menu, panier ===== -->
+  <header class="entete">
+    <div class="conteneur entete-interieur">
+      <a class="logo" href="index.html">
+        <img src="img/logo.svg" alt="" width="44" height="44">
+        <span class="logo-texte">
+          <span class="logo-nom">Le Comptoir des Ombres</span>
+          <span class="logo-sous">curiosités &amp; antiquités — depuis 2019</span>
+        </span>
+      </a>
+
+      <button class="bouton-menu" type="button" aria-expanded="false" aria-controls="nav-principale">
+        <span aria-hidden="true">☰</span> Menu
+      </button>
+
+      <nav class="nav-principale" id="nav-principale" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="catalogue.html">Catalogue</a>
+        <a href="a-propos.html">Qui suis-je ?</a>
+        <a href="contact.html">Contact</a>
+        <a class="lien-panier" href="panier.html" aria-label="Panier">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M6 7h12l-1.2 12.2a1 1 0 0 1-1 .8H8.2a1 1 0 0 1-1-.8Z M9 7a3 3 0 0 1 6 0"
+                  fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+          Panier
+          <span class="pastille" data-compteur-panier hidden>0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== Titre de la page ===== -->
+    <section class="entete-page">
+      <div class="conteneur">
+        <p class="fil-ariane"><a href="index.html">Accueil</a> <span aria-hidden="true">›</span> Catalogue</p>
+        <h1>Le catalogue</h1>
+        <p class="entete-page-intro">
+          Tout ce qui dort en ce moment sur les étagères du comptoir.
+          Les stocks sont minuscules : quand c'est parti, c'est parti.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-catalogue">
+      <div class="conteneur">
+
+        <!-- ===== Barre de filtres (remplie et gérée par js/catalogue.js) ===== -->
+        <form class="filtres" role="search" aria-label="Filtrer le catalogue" data-filtres>
+          <div class="filtres-ligne">
+            <label class="champ champ-recherche">
+              <span class="champ-libelle">Rechercher</span>
+              <input type="search" name="recherche" placeholder="bougie, clé, miroir…" autocomplete="off">
+            </label>
+
+            <label class="champ">
+              <span class="champ-libelle">Trier par</span>
+              <select name="tri">
+                <option value="defaut">Ordre de l'étagère</option>
+                <option value="prix-asc">Prix croissant</option>
+                <option value="prix-desc">Prix décroissant</option>
+                <option value="nom">Nom (A → Z)</option>
+              </select>
+            </label>
+          </div>
+
+          <fieldset class="filtres-categories">
+            <legend class="champ-libelle">Rubrique</legend>
+            <div class="puces" data-puces-categories>
+              <!-- boutons de rubriques insérés en JavaScript -->
+            </div>
+          </fieldset>
+        </form>
+
+        <p class="resultat-compte" data-compte aria-live="polite"></p>
+
+        <div class="grille-produits" data-catalogue>
+          <noscript><p>Activez JavaScript pour afficher les produits.</p></noscript>
+        </div>
+
+        <div class="catalogue-vide" data-catalogue-vide hidden>
+          <p>Rien sur cette étagère… pour l'instant.</p>
+          <button class="bouton bouton-discret bouton-petit" type="button" data-reinitialiser>
+            Tout afficher
+          </button>
+        </div>
+
+        <p class="note-manuscrite">
+          (Vous cherchez un objet précis qui n'est pas là ? Écrivez-moi via la page
+          <a href="contact.html">Contact</a>, j'ai encore des cartons pas déballés.)
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Pied de page ===== -->
+  <footer class="pied">
+    <div class="conteneur pied-interieur">
+      <div>
+        <p class="pied-nom">Le Comptoir des Ombres</p>
+        <p>Curiosités anciennes, bougies &amp; objets d'antiquaire.</p>
+      </div>
+      <nav aria-label="Liens du pied de page">
+        <a href="catalogue.html">Catalogue</a>
+        <a href="a-propos.html">Qui suis-je ?</a>
+        <a href="contact.html">Contact</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </nav>
+    </div>
+    <div class="conteneur pied-bas">
+      <p>© 2019–<span data-annee>2026</span> Le Comptoir des Ombres — site fait maison avec de la cire et beaucoup de café.</p>
+      <p class="compteur-visites">Vous êtes le <span>004 213</span><sup>e</sup> visiteur ✦ Dernière mise à jour : mars 2023</p>
+    </div>
+  </footer>
+
+  <!-- Scripts : données d'abord, puis dessins, puis logique -->
+  <script src="data/products.js"></script>
+  <script src="js/illustrations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/catalogue.js"></script>
+</body>
+</html>
