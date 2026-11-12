@@ -1,0 +1,633 @@
+/* ==========================================================================
+   Le Comptoir des Ombres — Feuille de style commune
+   --------------------------------------------------------------------------
+   Sommaire :
+     1. Polices
+     2. Variables (couleurs, tailles)
+     3. Base, texture de papier, vignettage
+     4. Bandeau promo + en-tête + menu
+     5. Boutons
+     6. Bannière d'accueil (brume, bougies)
+     7. Sections, cartes produits
+     8. Engagements, mot du gérant
+     9. Pied de page, toast
+    10. Responsive
+    11. Accessibilité : réduction des animations
+   ========================================================================== */
+
+
+/* ---------- 1. Polices ----------
+   Aucune police téléchargée : on utilise des polices à empattements déjà
+   présentes sur la plupart des ordinateurs (Garamond, Palatino, Georgia...).
+   Pour une police plus "ancienne", déposer un fichier libre de droits
+   (ex. IM Fell English, licence OFL) dans boutique/fonts/ puis décommenter :
+
+@font-face {
+  font-family: "IM Fell English";
+  src: url("../fonts/IMFellEnglish-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+*/
+
+
+/* ---------- 2. Variables ---------- */
+:root {
+  /* couleurs */
+  --noir:          #0c0a0a;
+  --noir-doux:     #151112;
+  --brun-nuit:     #1d1617;
+  --bordeaux:      #6b1a22;
+  --bordeaux-vif:  #8e2430;
+  --vert-de-gris:  #5f7f74;
+  --vert-pale:     #93ada3;
+  --parchemin:     #d8cbb0;
+  --parchemin-pale:#ece2cc;
+  --or-vieilli:    #a8874a;
+  --flamme:        #e9a94b;
+
+  /* typographie */
+  --police-titre: "IM Fell English", "Garamond", "EB Garamond", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --police-texte: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Times New Roman", serif;
+
+  /* mise en page */
+  --largeur-max: 1180px;
+  --rayon: 4px;
+  --ombre: 0 10px 30px rgba(0, 0, 0, .55);
+}
+
+
+/* ---------- 3. Base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--police-texte);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--parchemin);
+  background-color: var(--noir);
+  /* lueur bordeaux en haut + lueur verdâtre en bas */
+  background-image:
+    radial-gradient(ellipse at 20% -10%, rgba(107, 26, 34, .35), transparent 55%),
+    radial-gradient(ellipse at 90% 110%, rgba(95, 127, 116, .18), transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Texture de papier vieilli : bruit généré en SVG (aucun fichier externe) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: .09;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .85  0 0 0 0 .75  0 0 0 0 .6  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23b)'/></svg>");
+}
+
+/* Vignettage : les bords de l'écran sont assombris */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .7) 100%);
+}
+
+img, svg { max-width: 100%; display: block; }
+
+a { color: var(--vert-pale); text-underline-offset: 3px; }
+a:hover { color: var(--parchemin-pale); }
+
+:focus-visible {
+  outline: 2px dashed var(--flamme);
+  outline-offset: 3px;
+}
+
+h1, h2, h3 {
+  font-family: var(--police-titre);
+  font-weight: normal;
+  line-height: 1.2;
+  color: var(--parchemin-pale);
+  margin: 0 0 .5em;
+}
+
+.conteneur {
+  width: 100%;
+  max-width: var(--largeur-max);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.centre { text-align: center; }
+
+
+/* ---------- 4. Bandeau promo, en-tête, menu ---------- */
+
+/* Bandeau qui défile en boucle (le contenu est doublé dans le HTML) */
+.bandeau-promo {
+  overflow: hidden;
+  background: var(--bordeaux);
+  color: var(--parchemin-pale);
+  font-size: .85rem;
+  letter-spacing: .06em;
+  border-bottom: 1px solid #000;
+}
+.bandeau-defile {
+  display: flex;
+  gap: 4rem;
+  width: max-content;
+  padding: .35rem 0;
+  animation: defile 40s linear infinite;
+}
+@keyframes defile {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.entete {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 50;
+  background: rgba(12, 10, 10, .92);
+  border-bottom: 1px solid rgba(168, 135, 74, .25);
+  backdrop-filter: blur(4px);
+}
+.entete-interieur {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: .8rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  text-decoration: none;
+  color: inherit;
+}
+.logo-texte { display: flex; flex-direction: column; }
+.logo-nom {
+  font-family: var(--police-titre);
+  font-size: 1.45rem;
+  color: var(--parchemin-pale);
+  letter-spacing: .02em;
+}
+.logo-sous {
+  font-size: .75rem;
+  font-style: italic;
+  color: var(--vert-pale);
+}
+
+.nav-principale {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+.nav-principale a {
+  color: var(--parchemin);
+  text-decoration: none;
+  font-size: 1rem;
+  padding-block: .2rem;
+  border-bottom: 1px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.nav-principale a:hover,
+.nav-principale a[aria-current="page"] {
+  color: var(--parchemin-pale);
+  border-bottom-color: var(--bordeaux-vif);
+}
+
+.lien-panier {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+}
+.pastille {
+  min-width: 1.3rem;
+  height: 1.3rem;
+  padding: 0 .3rem;
+  border-radius: 999px;
+  background: var(--bordeaux-vif);
+  color: #fff;
+  font-size: .75rem;
+  line-height: 1.3rem;
+  text-align: center;
+  font-family: Georgia, serif;
+}
+
+/* bouton du menu mobile : caché sur grand écran */
+.bouton-menu {
+  display: none;
+  background: none;
+  border: 1px solid rgba(216, 203, 176, .35);
+  color: var(--parchemin);
+  font: inherit;
+  padding: .3rem .8rem;
+  border-radius: var(--rayon);
+  cursor: pointer;
+}
+
+
+/* ---------- 5. Boutons ---------- */
+.bouton {
+  display: inline-block;
+  padding: .75rem 1.5rem;
+  font-family: var(--police-titre);
+  font-size: 1.05rem;
+  letter-spacing: .03em;
+  color: var(--parchemin-pale);
+  background: linear-gradient(180deg, var(--bordeaux-vif), var(--bordeaux));
+  border: 1px solid #3a0d12;
+  border-radius: var(--rayon);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 4px 14px rgba(0, 0, 0, .5);
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter .2s, transform .2s;
+}
+.bouton:hover { filter: brightness(1.15); color: #fff; transform: translateY(-1px); }
+.bouton:active { transform: translateY(0); }
+
+.bouton-discret {
+  background: transparent;
+  border-color: rgba(147, 173, 163, .5);
+  color: var(--vert-pale);
+  box-shadow: none;
+}
+.bouton-discret:hover { border-color: var(--vert-pale); color: var(--parchemin-pale); }
+
+.bouton-petit { padding: .45rem .9rem; font-size: .9rem; }
+
+
+/* ---------- 6. Bannière d'accueil ---------- */
+.banniere {
+  position: relative;
+  overflow: hidden;
+  padding-block: 5rem 4rem;
+  border-bottom: 1px solid rgba(168, 135, 74, .2);
+}
+.banniere-interieur {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+.surtitre {
+  margin: 0 0 .8rem;
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .3em;
+  color: var(--vert-pale);
+}
+.banniere h1 {
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .8);
+}
+.banniere h1 em {
+  color: var(--flamme);
+  font-style: italic;
+  opacity: .9;
+}
+.banniere-intro {
+  max-width: 34rem;
+  font-size: 1.1rem;
+  color: var(--parchemin);
+}
+.banniere-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.banniere-bougies svg {
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+  filter: drop-shadow(0 0 30px rgba(233, 169, 75, .15));
+}
+
+/* Brume : deux grandes nappes floues qui dérivent lentement */
+.brume {
+  position: absolute;
+  left: -50%;
+  width: 200%;
+  height: 60%;
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(30px);
+  opacity: .5;
+  background:
+    radial-gradient(ellipse 25% 40% at 20% 60%, rgba(147, 173, 163, .28), transparent 70%),
+    radial-gradient(ellipse 30% 35% at 55% 50%, rgba(216, 203, 176, .14), transparent 70%),
+    radial-gradient(ellipse 20% 45% at 85% 65%, rgba(147, 173, 163, .22), transparent 70%);
+}
+.brume-1 { bottom: -10%; animation: derive 55s ease-in-out infinite alternate; }
+.brume-2 { bottom: 10%; opacity: .3; animation: derive 75s ease-in-out infinite alternate-reverse; }
+@keyframes derive {
+  from { transform: translateX(-8%); }
+  to   { transform: translateX(8%); }
+}
+
+/* Flammes qui vacillent (utilisé aussi dans les dessins de produits) */
+.flamme {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: vacille 2.4s ease-in-out infinite;
+}
+.flamme-b { animation-duration: 3.1s; animation-delay: -.8s; }
+.flamme-c { animation-duration: 2.7s; animation-delay: -1.6s; }
+@keyframes vacille {
+  0%, 100% { transform: scale(1, 1) rotate(0deg); opacity: 1; }
+  20%      { transform: scale(.96, 1.04) rotate(-2deg); opacity: .92; }
+  45%      { transform: scale(1.03, .95) rotate(1.5deg); opacity: 1; }
+  70%      { transform: scale(.98, 1.06) rotate(-1deg); opacity: .88; }
+}
+
+
+/* ---------- 7. Sections et cartes produits ---------- */
+.section { padding-block: 4.5rem; }
+.section-sombre {
+  background: rgba(0, 0, 0, .35);
+  border-block: 1px solid rgba(168, 135, 74, .15);
+}
+
+.section-titre {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.section-titre h2 {
+  font-size: 2.2rem;
+  display: inline-block;
+  position: relative;
+}
+/* petits ornements de chaque côté du titre */
+.section-titre h2::before,
+.section-titre h2::after {
+  content: "❦";
+  font-size: 1rem;
+  color: var(--bordeaux-vif);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.section-titre h2::before { left: -2rem; }
+.section-titre h2::after  { right: -2rem; transform: translateY(-50%) scaleX(-1); }
+.section-titre p { margin: 0; font-style: italic; color: var(--vert-pale); }
+
+.grille-produits {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.8rem;
+}
+
+.carte-produit {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, var(--brun-nuit), var(--noir-doux));
+  border: 1px solid rgba(168, 135, 74, .22);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  overflow: hidden;
+  transition: transform .3s, border-color .3s;
+}
+.carte-produit:hover {
+  transform: translateY(-4px);
+  border-color: rgba(142, 36, 48, .7);
+}
+
+.carte-visuel {
+  display: block;
+  padding: 1.2rem 1.5rem .5rem;
+  background: radial-gradient(circle at 50% 45%, rgba(95, 127, 116, .12), transparent 70%);
+  border-bottom: 1px solid rgba(168, 135, 74, .12);
+}
+.carte-visuel svg {
+  width: 100%;
+  aspect-ratio: 1;
+  max-height: 200px;
+  transition: transform .4s;
+}
+.carte-produit:hover .carte-visuel svg { transform: scale(1.04); }
+
+.carte-corps {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem 1.2rem 1.2rem;
+}
+.carte-corps h3 { font-size: 1.25rem; margin-bottom: .3rem; }
+.carte-corps h3 a { color: inherit; text-decoration: none; }
+.carte-corps h3 a:hover { color: var(--flamme); }
+
+.carte-desc {
+  flex: 1;
+  margin: 0 0 1rem;
+  font-size: .93rem;
+  font-style: italic;
+  color: #b9ad94;
+}
+.carte-pied {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  flex-wrap: wrap;
+}
+.prix {
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+  color: var(--flamme);
+}
+
+.badge {
+  position: absolute;
+  top: .8rem;
+  left: -.2rem;
+  z-index: 1;
+  padding: .15rem .7rem;
+  font-size: .75rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--parchemin-pale);
+  background: var(--bordeaux);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, .5);
+}
+
+/* petite note écrite "à la main" sous les produits */
+.note-manuscrite {
+  margin: 2rem auto 1.5rem;
+  max-width: 40rem;
+  text-align: center;
+  font-size: .9rem;
+  font-style: italic;
+  color: #8f8573;
+  transform: rotate(-.6deg);
+}
+
+
+/* ---------- 8. Engagements et mot du gérant ---------- */
+.grille-engagements {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+.engagement-icone {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: .6rem;
+  font-size: 1.4rem;
+  color: var(--or-vieilli);
+  border: 1px solid rgba(168, 135, 74, .4);
+  border-radius: 50%;
+}
+.engagement h3 { font-size: 1.2rem; }
+.engagement p { margin: 0; font-size: .93rem; color: #b9ad94; }
+.engagement small { color: #7d7466; }
+
+.mot-gerant { display: flex; justify-content: center; }
+
+/* encart façon vieux papier (lisible : texte foncé sur fond clair) */
+.parchemin {
+  max-width: 44rem;
+  padding: 2.5rem 3rem;
+  color: #2b2118;
+  background:
+    radial-gradient(ellipse at center, transparent 50%, rgba(90, 60, 30, .35) 100%),
+    linear-gradient(180deg, #e6d9bb, #d6c59f);
+  border-radius: 2px;
+  box-shadow: var(--ombre), inset 0 0 40px rgba(90, 60, 30, .35);
+  transform: rotate(.4deg);
+}
+.parchemin h2 { color: #3a0d12; font-size: 1.8rem; }
+.parchemin a { color: var(--bordeaux); }
+.signature {
+  margin-bottom: 0;
+  text-align: right;
+  font-family: var(--police-titre);
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+
+/* ---------- 9. Pied de page et toast ---------- */
+.pied {
+  margin-top: 2rem;
+  padding-top: 2.5rem;
+  padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  background: #070606;
+  border-top: 1px solid rgba(107, 26, 34, .6);
+  font-size: .9rem;
+}
+.pied-interieur {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(216, 203, 176, .1);
+}
+.pied-nom { font-family: var(--police-titre); font-size: 1.3rem; color: var(--parchemin-pale); margin: 0; }
+.pied-interieur p { margin: .2rem 0; }
+.pied nav { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center; }
+.pied nav a { color: var(--parchemin); text-decoration: none; }
+.pied nav a:hover { color: var(--flamme); }
+.pied-bas { padding-top: 1rem; color: #7d7466; font-size: .82rem; }
+.pied-bas p { margin: .2rem 0; }
+.compteur-visites span {
+  font-family: "Courier New", monospace;
+  background: #000;
+  color: #7fbf7f;
+  padding: 0 .3rem;
+  border: 1px inset #333;
+}
+
+/* Message temporaire "ajouté au panier" */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  z-index: 200;
+  max-width: calc(100% - 32px);
+  padding: .8rem 1.4rem;
+  color: var(--parchemin-pale);
+  background: var(--brun-nuit);
+  border: 1px solid var(--bordeaux-vif);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  opacity: 0;
+  transform: translate(-50%, 20px);
+  transition: opacity .3s, transform .3s;
+  pointer-events: none;
+}
+.toast.visible { opacity: 1; transform: translate(-50%, 0); }
+
+
+/* ---------- 10. Responsive ---------- */
+@media (max-width: 980px) {
+  .banniere-interieur { grid-template-columns: 1fr; text-align: center; }
+  .banniere-intro { margin-inline: auto; }
+  .banniere-actions { justify-content: center; }
+  .banniere-bougies svg { max-width: 300px; }
+  .grille-engagements { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .conteneur { padding-inline: 16px; }
+
+  /* menu repliable */
+  .bouton-menu { display: inline-block; }
+  .entete-interieur { flex-wrap: wrap; }
+  .nav-principale {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .6rem;
+    padding-top: .6rem;
+  }
+  .nav-principale.ouverte { display: flex; }
+
+  .logo-nom { font-size: 1.15rem; }
+  .logo-sous { display: none; }
+
+  .banniere { padding-block: 3rem 2.5rem; }
+  .section { padding-block: 3rem; }
+  .parchemin { padding: 1.8rem 1.4rem; transform: none; }
+  .section-titre h2 { font-size: 1.8rem; }
+}
+
+@media (max-width: 480px) {
+  .grille-engagements { grid-template-columns: 1fr; }
+  .section-titre h2::before,
+  .section-titre h2::after { display: none; }
+}
+
+
+/* ---------- 11. Réduction des animations ----------
+   Si l'utilisateur a demandé moins d'animations dans son système,
+   on fige flammes, brume et bandeau. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html { scroll-behavior: auto; }
+}

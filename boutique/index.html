@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Comptoir des Ombres — Curiosités anciennes &amp; objets d'antiquaire</title>
+  <meta name="description" content="Bougies, grimoires, fioles et bijoux vieillis. Des objets qui ont déjà vécu.">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== Bandeau défilant (promo) ===== -->
+  <div class="bandeau-promo" aria-label="Informations livraison">
+    <div class="bandeau-defile">
+      <span>✦ Livraison offerte dès 60 € d'achat</span>
+      <span>✦ Expédition sous 3 à 5 nuits</span>
+      <span>✦ Emballage discret, sans mention extérieure</span>
+      <span>✦ Livraison offerte dès 60 € d'achat</span>
+      <span>✦ Expédition sous 3 à 5 nuits</span>
+      <span>✦ Emballage discret, sans mention extérieure</span>
+    </div>
+  </div>
+
+  <!-- ===== En-tête : logo, menu, panier ===== -->
+  <header class="entete">
+    <div class="conteneur entete-interieur">
+      <a class="logo" href="index.html">
+        <img src="img/logo.svg" alt="" width="44" height="44">
+        <span class="logo-texte">
+          <span class="logo-nom">Le Comptoir des Ombres</span>
+          <span class="logo-sous">curiosités &amp; antiquités — depuis 2019</span>
+        </span>
+      </a>
+
+      <button class="bouton-menu" type="button" aria-expanded="false" aria-controls="nav-principale">
+        <span aria-hidden="true">☰</span> Menu
+      </button>
+
+      <nav class="nav-principale" id="nav-principale" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="catalogue.html">Catalogue</a>
+        <a href="a-propos.html">Qui suis-je ?</a>
+        <a href="contact.html">Contact</a>
+        <a class="lien-panier" href="panier.html" aria-label="Panier">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M6 7h12l-1.2 12.2a1 1 0 0 1-1 .8H8.2a1 1 0 0 1-1-.8Z M9 7a3 3 0 0 1 6 0"
+                  fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+          Panier
+          <span class="pastille" data-compteur-panier hidden>0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== Bannière principale ===== -->
+    <section class="banniere">
+      <!-- couches de brume animées en CSS -->
+      <div class="brume brume-1" aria-hidden="true"></div>
+      <div class="brume brume-2" aria-hidden="true"></div>
+
+      <div class="conteneur banniere-interieur">
+        <div class="banniere-texte">
+          <p class="surtitre">Boutique de curiosités</p>
+          <h1>Des objets qui ont déjà vécu…<br><em>et qui n'ont pas fini.</em></h1>
+          <p class="banniere-intro">
+            Bougies coulées à la main, grimoires reliés, fioles scellées et bijoux
+            patinés par le temps. Chaque pièce est choisie, nettoyée (un peu) et
+            emballée par mes soins, dans mon petit atelier.
+          </p>
+          <div class="banniere-actions">
+            <a class="bouton" href="catalogue.html">Entrer dans la boutique</a>
+            <a class="bouton bouton-discret" href="a-propos.html">Qui tient ce comptoir ?</a>
+          </div>
+        </div>
+
+        <!-- Trois bougies dessinées en SVG, flammes animées -->
+        <div class="banniere-bougies" aria-hidden="true">
+          <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- halo -->
+            <circle cx="160" cy="120" r="140" fill="#f2b35a" opacity=".04"/>
+            <circle cx="160" cy="120" r="95" fill="#f2b35a" opacity=".05"/>
+            <circle cx="160" cy="110" r="55" fill="#f2b35a" opacity=".06"/>
+            <!-- bougeoir -->
+            <ellipse cx="160" cy="282" rx="130" ry="12" fill="#000" opacity=".5"/>
+            <path d="M40 276 Q160 248 280 276 Z" fill="#2a2420"/>
+            <rect x="52" y="258" width="216" height="10" rx="4" fill="#3a3129"/>
+            <!-- bougie gauche -->
+            <rect x="72" y="170" width="40" height="90" rx="3" fill="#d9cfb8"/>
+            <path d="M72 174 q0 14 5 18 q4-3 5-12 q4 20 8 6 q4 14 8 -2 q3 10 6 2 q2-6 6-8 V170 H72 Z" fill="#e8dfca"/>
+            <line x1="92" y1="170" x2="92" y2="160" stroke="#111" stroke-width="2"/>
+            <g class="flamme flamme-a">
+              <path d="M92 126 C83 140 85 153 92 158 C99 153 101 140 92 126 Z" fill="#e9a94b"/>
+              <path d="M92 139 C89 146 89 153 92 156 C95 153 95 146 92 139 Z" fill="#fbe7b0"/>
+            </g>
+            <!-- bougie centrale (noire, plus haute) -->
+            <rect x="138" y="110" width="46" height="150" rx="3" fill="#1c1a1a"/>
+            <path d="M138 114 q0 22 6 26 q5-4 5-18 q5 34 10 10 q4 20 9 -4 q3 16 7 2 q3-8 9-10 V110 H138 Z" fill="#262222"/>
+            <line x1="161" y1="110" x2="161" y2="98" stroke="#111" stroke-width="2"/>
+            <g class="flamme flamme-b">
+              <path d="M161 58 C150 76 152 92 161 98 C170 92 172 76 161 58 Z" fill="#e9a94b"/>
+              <path d="M161 74 C157 82 157 92 161 95 C165 92 165 82 161 74 Z" fill="#fbe7b0"/>
+            </g>
+            <!-- bougie droite (bordeaux, courte) -->
+            <rect x="208" y="200" width="38" height="60" rx="3" fill="#5a1a20"/>
+            <path d="M208 204 q0 12 4 15 q4-3 5-10 q4 16 7 4 q4 10 7 -2 q3 8 6 0 q2-4 4-6 V200 H208 Z" fill="#6b1a22"/>
+            <line x1="227" y1="200" x2="227" y2="191" stroke="#111" stroke-width="2"/>
+            <g class="flamme flamme-c">
+              <path d="M227 160 C219 172 220 185 227 190 C234 185 235 172 227 160 Z" fill="#e9a94b"/>
+              <path d="M227 172 C224 178 224 185 227 188 C230 185 230 178 227 172 Z" fill="#fbe7b0"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Produits phares (remplis par js/main.js depuis data/products.js) ===== -->
+    <section class="section">
+      <div class="conteneur">
+        <header class="section-titre">
+          <h2>Les pièces du moment</h2>
+          <p>Ce que mes visiteurs nocturnes emportent le plus souvent.</p>
+        </header>
+
+        <div class="grille-produits" data-produits-phares>
+          <!-- les cartes produits sont insérées ici en JavaScript -->
+          <noscript><p>Activez JavaScript pour afficher les produits.</p></noscript>
+        </div>
+
+        <p class="note-manuscrite">
+          (Les illustrations sont faites par moi en attendant de vraies photos, promis je m'en occupe bientôt !)
+        </p>
+
+        <div class="centre">
+          <a class="bouton bouton-discret" href="catalogue.html">Voir tout le catalogue →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Engagements de la boutique (un peu amateurs) ===== -->
+    <section class="section section-sombre">
+      <div class="conteneur grille-engagements">
+        <div class="engagement">
+          <span class="engagement-icone" aria-hidden="true">✉</span>
+          <h3>Emballage discret</h3>
+          <p>Papier kraft, ficelle et cire. Votre facteur n'en saura rien.</p>
+        </div>
+        <div class="engagement">
+          <span class="engagement-icone" aria-hidden="true">⚜</span>
+          <h3>Objets authentiques*</h3>
+          <p>Chinés en brocante, en grenier ou en vide-maison.<br><small>*pour la plupart</small></p>
+        </div>
+        <div class="engagement">
+          <span class="engagement-icone" aria-hidden="true">☾</span>
+          <h3>Fait main, la nuit</h3>
+          <p>Bougies et carnets fabriqués à l'atelier, en petites séries.</p>
+        </div>
+        <div class="engagement">
+          <span class="engagement-icone" aria-hidden="true">⚖</span>
+          <h3>Retours acceptés</h3>
+          <p>Sous 14 jours. Sauf si l'objet ne veut pas repartir.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Petit mot du gérant ===== -->
+    <section class="section">
+      <div class="conteneur mot-gerant">
+        <div class="parchemin">
+          <h2>Le mot du gérant</h2>
+          <p>
+            Bienvenue sur mon comptoir ! J'ai ouvert cette boutique il y a quelques
+            années, à côté de mon travail, parce que je n'arrivais plus à fermer
+            les portes de mon grenier. Chaque objet ici a une histoire, et souvent
+            plus d'une.
+          </p>
+          <p>
+            Le site est fait maison, alors s'il y a un bug, soyez indulgents
+            (et écrivez-moi via la page <a href="contact.html">Contact</a>).
+          </p>
+          <p class="signature">— Lucas</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Pied de page ===== -->
+  <footer class="pied">
+    <div class="conteneur pied-interieur">
+      <div>
+        <p class="pied-nom">Le Comptoir des Ombres</p>
+        <p>Curiosités anciennes, bougies &amp; objets d'antiquaire.</p>
+      </div>
+      <nav aria-label="Liens du pied de page">
+        <a href="catalogue.html">Catalogue</a>
+        <a href="a-propos.html">Qui suis-je ?</a>
+        <a href="contact.html">Contact</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </nav>
+    </div>
+    <div class="conteneur pied-bas">
+      <p>© 2019–<span data-annee>2026</span> Le Comptoir des Ombres — site fait maison avec de la cire et beaucoup de café.</p>
+      <p class="compteur-visites">Vous êtes le <span>004 213</span><sup>e</sup> visiteur ✦ Dernière mise à jour : mars 2023</p>
+    </div>
+  </footer>
+
+  <!-- Scripts : données d'abord, puis dessins, puis logique -->
+  <script src="data/products.js"></script>
+  <script src="js/illustrations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
